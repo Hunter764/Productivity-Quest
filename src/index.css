@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Gaming-inspired color palette */
+    --background: 210 25% 98%;
+    --foreground: 220 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Vibrant primary - Electric Blue */
+    --primary: 200 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 200 100% 70%;
+
+    /* Gaming secondary - Purple */
+    --secondary: 270 60% 85%;
+    --secondary-foreground: 270 60% 25%;
+
+    --muted: 210 25% 95%;
+    --muted-foreground: 220 15% 55%;
+
+    /* Gaming accent - Neon Green */
+    --accent: 120 80% 60%;
+    --accent-foreground: 120 80% 15%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 96%;
+    --ring: 200 100% 50%;
+
+    /* Gaming-specific colors */
+    --game-gold: 45 100% 55%;
+    --game-silver: 220 15% 75%;
+    --game-bronze: 30 80% 60%;
+    --game-exp: 120 80% 50%;
+    --game-health: 0 80% 60%;
+    --game-mana: 240 80% 60%;
+
+    /* Pixel-perfect radius */
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark gaming theme */
+    --background: 220 25% 8%;
+    --foreground: 210 25% 95%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 210 25% 95%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 210 25% 95%;
+
+    /* Neon primary for dark mode */
+    --primary: 200 100% 60%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 200 100% 80%;
+
+    --secondary: 270 30% 20%;
+    --secondary-foreground: 270 50% 85%;
+
+    --muted: 220 25% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    /* Bright accent for dark mode */
+    --accent: 120 80% 50%;
+    --accent-foreground: 120 80% 95%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 25% 20%;
+    --input: 220 25% 15%;
+    --ring: 200 100% 60%;
+
+    /* Enhanced gaming colors for dark mode */
+    --game-gold: 45 100% 65%;
+    --game-silver: 220 15% 80%;
+    --game-bronze: 30 80% 65%;
+    --game-exp: 120 80% 60%;
+    --game-health: 0 80% 65%;
+    --game-mana: 240 80% 70%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Gaming UI Components */
+  .pixel-border {
+    border-style: solid;
+    border-width: 2px;
+    image-rendering: pixelated;
+  }
+  
+  .retro-card {
+    @apply pixel-border border-primary bg-card backdrop-blur-sm;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  
+  .glow-effect {
+    filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.6));
+  }
+  
+  .progress-bar {
+    @apply h-4 bg-muted rounded-sm overflow-hidden pixel-border;
+  }
+  
+  .progress-fill {
+    @apply h-full transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, 
+      hsl(var(--game-exp)) 0%, 
+      hsl(var(--accent)) 50%, 
+      hsl(var(--game-gold)) 100%);
+  }
+
+  .stat-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs font-bold rounded pixel-border;
+  }
+  
+  .level-badge {
+    @apply stat-badge bg-game-gold text-game-gold-foreground border-game-gold;
+    color: hsl(45 100% 15%);
+    background: hsl(var(--game-gold));
+    border-color: hsl(var(--game-gold));
+  }
+  
+  .exp-badge {
+    @apply stat-badge bg-game-exp text-game-exp-foreground border-game-exp;
+    color: hsl(120 80% 15%);
+    background: hsl(var(--game-exp));
+    border-color: hsl(var(--game-exp));
+  }
+
+  .pixelated {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+  }
+
+  /* Profile Card Styling */
+  .profile-card {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+    border: 2px solid hsl(var(--border));
+  }
+
+  /* Tiptap Editor Styling */
+  .ProseMirror {
+    outline: none;
+    padding: 1rem;
+    min-height: 200px;
+  }
+
+  .ProseMirror h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .ProseMirror h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .ProseMirror p {
+    margin: 0.5rem 0;
+  }
+
+  .ProseMirror ul, .ProseMirror ol {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .ProseMirror blockquote {
+    border-left: 3px solid hsl(var(--border));
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .ProseMirror code {
+    background: hsl(var(--muted));
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .ProseMirror p.is-editor-empty:first-child::before {
+    color: hsl(var(--muted-foreground));
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  /* Character unlock animations */
+  .character-unlock {
+    animation: character-unlock 0.6s ease-out;
+  }
+
+  @keyframes character-unlock {
+    0% {
+      transform: scale(1);
+      filter: brightness(0.5) blur(4px);
+    }
+    50% {
+      transform: scale(1.05);
+      filter: brightness(1.2) blur(0px);
+    }
+    100% {
+      transform: scale(1);
+      filter: brightness(1) blur(0px);
+    }
+  }
+
+  /* Locked character hover effects */
+  .locked-character:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.8) blur(2px);
+  }
+
+  /* Ready to unlock animation */
+  .ready-unlock {
+    animation: ready-pulse 2s infinite;
+  }
+
+  @keyframes ready-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 8px hsl(var(--primary) / 0);
+    }
+  }
+}
